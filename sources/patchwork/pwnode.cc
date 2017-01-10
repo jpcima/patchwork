@@ -32,9 +32,9 @@ PwNode::PwNode(const QString &id, QGraphicsItem *parent)
   wc->setLayout(l);
   this->setCentralWidget(wc);
 
-  QObject *evf = qutil::createFunctionalEventFilter([d](QEvent *ev) -> bool {
+  QObject *evf = qutil::createFunctionalEventFilter([this, d](QEvent *ev) -> bool {
     if (ev->type() == QEvent::LayoutRequest)
-      QTimer::singleShot(0, [d]() { d->arrangeEndpoints(); });
+      QTimer::singleShot(0, this, [d]() { d->arrangeEndpoints(); });
     return false;
   }, this);
   this->installContainerEventFilter(evf);
@@ -145,7 +145,7 @@ void PwNodePrivate::arrangeEndpoints() {
 
   QSize minsize(hspacing * (1 + numhoriz), vspacing * (1 + numvert));
   q->setEndpointBoundingSize(minsize);
-  QTimer::singleShot(0, [q]() { q->updateContainerSize(); });
+  QTimer::singleShot(0, q, [q]() { q->updateContainerSize(); });
 
   numt = 0, numb = 0, numl = 0, numr = 0;
   for (PwEndpoint *ep : this->endpoints) {

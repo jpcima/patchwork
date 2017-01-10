@@ -85,5 +85,7 @@ void PwConnectorPrivate::updatePath() {
 }
 
 void PwConnectorPrivate::updatePathLater() {
-  QTimer::singleShot(0, [this]() { this->updatePath(); });
+  Q_Q(PwConnector);
+
+  QTimer::singleShot(0, q, [this]() { this->updatePath(); });
 }

@@ -76,9 +76,9 @@ PwBoxItem::PwBoxItem(QGraphicsItem *parent)
   qutil::setStyleSheetFromFile(w, ":/patchwork/style/pwboxitem.css");
 
   d->updateRect();
-  qutil::installFunctionalEventFilter(w, [d](QEvent *ev) -> bool {
+  qutil::installFunctionalEventFilter(w, [this, d](QEvent *ev) -> bool {
     if (ev->type() == QEvent::LayoutRequest)
-      QTimer::singleShot(0, [d]() { d->updateRect(); });
+      QTimer::singleShot(0, this, [d]() { d->updateRect(); });
     return false;
   });
 
