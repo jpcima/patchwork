@@ -1,0 +1,9 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+  <qresource>
+    <file>patchwork/images/pwdial-skin.png</file>
+    <file>patchwork/images/pwslider-skin.png</file>
+    <file>patchwork/style/pwboxtitle.css</file>
+    <file>patchwork/style/pwboxitem.css</file>
+  </qresource>
+</RCC>
